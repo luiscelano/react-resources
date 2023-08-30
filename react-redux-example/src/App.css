@@ -1,7 +1,4 @@
-body{
-    background-color: brown;
-  }
-  
+
   button {
     background-color: yellow;
   }
@@ -11,5 +8,4 @@ body{
     flex-direction: column;
     width: 100px;
     align-items: center;
-    color: white;
   }
