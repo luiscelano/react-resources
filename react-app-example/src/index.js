@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-import Ejemplo1 from './example';
+import Ejemplo1 from './example1';
+import Ejemplo2 from './example2';
+import Ejemplo3 from './example3';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Ejemplo1 />
+    {/* <Ejemplo1 /> */}
+    {/* <Ejemplo2 /> */}
+    <Ejemplo3 />
   </React.StrictMode>
 );
