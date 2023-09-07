@@ -1,0 +1,29 @@
+{
+    "posts": [
+        {
+            "author": "John Doe",
+            "description": "Hey!",
+            "comments": []
+        },
+        {
+            "author": "Luis Alvarado",
+            "description": "This is a post!",
+            "comments": [
+                {
+                    "author": "John Doe",
+                    "message": "Hello Luis!"
+                }
+            ]
+        },
+        {
+            "author": "John Doe",
+            "description": "This is another post!",
+            "comments": [
+                {
+                    "author": "John Luis",
+                    "message": "Hello Joe!"
+                }
+            ]
+        }
+    ]
+}
