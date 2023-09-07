@@ -4,6 +4,7 @@ import http from 'http'
 import path from 'path'
 // import { initAPI } from 'api'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 dotenv.config({ path: __dirname.replace('src', `.env.${process.env.NODE_ENV}`) })
 import config from 'config'
@@ -19,10 +20,10 @@ import posts from '__fixtures__/posts.json'
 
   const server = http.createServer(app)
 
+  app.use(cors())
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
   app.use(express.static(path.join(__dirname, 'views')))
-  console.log(posts)
 
   //   initAPI(app)
   app.get('/healthcheck', (__, res) => {
@@ -34,7 +35,8 @@ import posts from '__fixtures__/posts.json'
     res.status(200).send(data)
   })
 
-  app.get('/posts', (__, res) => {
+  app.get('/posts', (req, res) => {
+    // console.log('posts request data:', req)
     res.status(200).json(posts)
   })
 
