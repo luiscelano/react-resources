@@ -15,6 +15,7 @@ function Ejemplo3() {
   const onSubmit = (e) => {
     e.preventDefault();
     setContactsList((contacts) => [...contacts, contactValues]);
+    setContactValues({});
     document.getElementById('contactForm').reset();
   };
 
