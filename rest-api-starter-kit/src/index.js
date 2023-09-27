@@ -9,6 +9,7 @@ import cors from 'cors'
 dotenv.config({ path: __dirname.replace('src', `.env.${process.env.NODE_ENV}`) })
 import config from 'config'
 import posts from '__fixtures__/posts.json'
+import routes from 'routes'
 ;(async () => {
   const app = express()
 
@@ -23,8 +24,7 @@ import posts from '__fixtures__/posts.json'
   app.use(cors())
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
-  app.use(express.static(path.join(__dirname, 'views')))
-
+  app.use(routes)
   //   initAPI(app)
   app.get('/healthcheck', (__, res) => {
     const data = {

@@ -1,29 +1,27 @@
-{
-    "posts": [
-        {
-            "author": "John Doe",
-            "description": "Hey!",
-            "comments": []
-        },
-        {
-            "author": "Luis Alvarado",
-            "description": "This is a post!",
-            "comments": [
-                {
-                    "author": "John Doe",
-                    "message": "Hello Luis!"
-                }
-            ]
-        },
-        {
-            "author": "John Doe",
-            "description": "This is another post!",
-            "comments": [
-                {
-                    "author": "John Luis",
-                    "message": "Hello Joe!"
-                }
-            ]
-        }
-    ]
-}
+[
+    {
+      "username": "user1",
+      "author": "John Doe",
+      "description": "This is a post about football"
+    },
+    {
+      "username": "user2",
+      "author": "Jane Smith",
+      "description": "Here's another football post"
+    },
+    {
+        "username": "user1",
+        "author": "John Doe",
+      "description": "A great goal scored in the latest match"
+    },
+    {
+      "username": "user4",
+      "author": "Sarah Adams",
+      "description": "Thoughts on the current football season"
+    },
+    {
+      "username": "user5",
+      "author": "David Thompson",
+      "description": "Predictions for the upcoming football game"
+    }
+  ]

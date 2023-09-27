@@ -3,19 +3,20 @@ import generateAccessToken from 'utils/generateAccessToken'
 import generateRefreshToken from 'utils/generateRefreshToken'
 import jwt from 'jsonwebtoken'
 
-const users = []
-const refreshTokens = []
+const users = [] // stored in users table
+const refreshTokens = [] //will be stored in redis DB
 
 export const createUser = async (req, res) => {
   const salt = await bcrypt.genSalt()
   const hashedPassword = await bcrypt.hash(req.body.password, salt)
+  console.log('salt', salt)
   console.log('hashedPassword', hashedPassword)
   const user = { username: req.body.username, password: hashedPassword }
   users.push(user)
-  delete user.password
 
-  const accessToken = generateAccessToken(user)
-  const refreshToken = generateRefreshToken(user)
+  const accessToken = generateAccessToken({ username: user.username })
+  const refreshToken = generateRefreshToken({ username: user.username })
+  refreshTokens.push(refreshToken)
   return res.status(200).json({
     message: 'User created!',
     accessToken,
@@ -32,9 +33,9 @@ export const userSignIn = async (req, res) => {
 
   try {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      delete user.password
-      const accessToken = generateAccessToken(user)
-      const refreshToken = generateRefreshToken(user)
+      const accessToken = generateAccessToken({ username: user.username })
+      const refreshToken = generateRefreshToken({ username: user.username })
+      refreshTokens.push(refreshToken)
       return res.status(200).json({
         message: 'Signed In!',
         accessToken,
@@ -47,8 +48,10 @@ export const userSignIn = async (req, res) => {
 }
 
 export const userSignOut = (req, res) => {
-  refreshTokens = refreshTokens.filter((refreshToken) => refreshToken !== req.body.refreshToken)
-
+  if (!req.body.token.length) return res.status(403).send()
+  const index = refreshTokens.findIndex((refreshToken) => refreshToken === req.body.token)
+  if (index === -1) return res.status(403).send()
+  refreshTokens.splice(index, 1)
   return res.send('Signed Out!')
 }
 
