@@ -37,7 +37,7 @@ import routes from 'routes'
 
   app.get('/posts', (req, res) => {
     // console.log('posts request data:', req)
-    res.status(200).json(posts)
+    res.status(200).json({ posts })
   })
 
   server.listen(PORT, () => {

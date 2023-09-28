@@ -6,7 +6,7 @@ const validateAccessToken = async (req, res, next) => {
   token = token.replace('Bearer ', '')
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     console.log(err)
-    if (err) return res.sendStatus(403)
+    if (err) return res.sendStatus(401)
     req.user = user
     next()
   })

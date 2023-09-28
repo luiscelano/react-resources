@@ -24,10 +24,10 @@ export const userLogin = async (req, res) => {
         refreshToken
       })
     } else {
-      return res.status(500).send('Wrong password')
+      return res.status(401).send('Wrong password')
     }
   } catch {
-    res.status(500).send()
+    res.status(401).send()
   }
 }
 
@@ -41,7 +41,7 @@ export const userLogout = (req, res) => {
 
 export const getAccessToken = async (req, res) => {
   const refreshToken = req.body.token
-  if (refreshToken == null) return res.sendStatus(401)
+  if (refreshToken == null) return res.sendStatus(403)
   if (!refreshTokens.includes(refreshToken)) return res.status(403).send('Forbidden')
 
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
